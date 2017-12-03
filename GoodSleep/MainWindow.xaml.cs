@@ -1,5 +1,6 @@
 ﻿using GoodSleep.Models;
 using GoodSleep.Utilities;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -32,7 +33,10 @@ namespace GoodSleep
         private async Task UpdateViewAsync()
         {
             gridLoading.Visibility = Visibility.Visible;
-            listDevices.ItemsSource = await DeviceUtility.GetPowerDevicesAsync();
+            var devices = await DeviceUtility.GetPowerDevicesAsync();
+
+            listDevices.ItemsSource = devices;
+            textCount.Text = $"비활성화 가능한 장치 : {devices.Where(x => x.IsWakeEnabled).Count()} / {devices.Count}";
             gridLoading.Visibility = Visibility.Collapsed;
         }
         #endregion

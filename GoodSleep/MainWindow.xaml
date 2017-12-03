@@ -5,41 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="GoodSleep" Height="700" Width="900" WindowStartupLocation="CenterScreen">
-    
-    <Grid>
-        <ListView Grid.Row="0" x:Name="listDevices" SelectionMode="Single">
-            <ListView.Resources>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsWakeProgrammable}" Value="True">
-                            <Setter Property="Foreground" Value="Green" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsWakeEnabled}" Value="True">
-                            <Setter Property="Foreground" Value="Red" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.Resources>
 
-            <ListView.ContextMenu>
-                <ContextMenu>
-                    <MenuItem x:Name="contentShow" Header="자세히 보기" Click="ContentShow_Click" />
-                    <Separator />
-                    <MenuItem x:Name="contextEnable" Header="절전 해제 활성화" Click="ContextEnable_Click" />
-                    <MenuItem x:Name="contextDisable" Header="절전 해제 비활성화" Click="ContextDisable_Click" />
-                </ContextMenu>
-            </ListView.ContextMenu>
-            
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="이름" Width="180" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="자세한 설명" Width="220" DisplayMemberBinding="{Binding Description}" />
-                    <GridViewColumn Header="장치 제조사" Width="180" DisplayMemberBinding="{Binding Manufacturer}" />
-                    <GridViewColumn Header="장치 아이디" Width="210" DisplayMemberBinding="{Binding DeviceID}" />
-                    <GridViewColumn Header="활성화" Width="60" DisplayMemberBinding="{Binding IsWakeEnabled}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <ListView Grid.Row="0" x:Name="listDevices" SelectionMode="Single">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsWakeProgrammable}" Value="True">
+                                <Setter Property="Foreground" Value="Green" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsWakeEnabled}" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Resources>
+
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem x:Name="contentShow" Header="자세히 보기" Click="ContentShow_Click" />
+                        <Separator />
+                        <MenuItem x:Name="contextEnable" Header="절전 해제 활성화" Click="ContextEnable_Click" />
+                        <MenuItem x:Name="contextDisable" Header="절전 해제 비활성화" Click="ContextDisable_Click" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="이름" Width="180" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="자세한 설명" Width="220" DisplayMemberBinding="{Binding Description}" />
+                        <GridViewColumn Header="장치 제조사" Width="180" DisplayMemberBinding="{Binding Manufacturer}" />
+                        <GridViewColumn Header="장치 아이디" Width="210" DisplayMemberBinding="{Binding DeviceID}" />
+                        <GridViewColumn Header="활성화" Width="60" DisplayMemberBinding="{Binding IsWakeEnabled}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="220"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <Ellipse Width="15" Height="15" Fill="#FF042271" Margin="0,0,10,0" />
+                        <TextBlock Text="절전 해제가 가능한 장치" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <Ellipse Width="15" Height="15" Fill="Green" Margin="0,0,10,0" />
+                        <TextBlock Text="설정 변경이 가능한 장치" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <Ellipse Width="15" Height="15" Fill="Red" Margin="0,0,10,0" />
+                        <TextBlock Text="절전 해제가 활성화된 장치" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Column="1" BorderThickness="1,0,0,0" BorderBrush="#FFCACACA" VerticalAlignment="Stretch">
+                    <TextBlock x:Name="textCount" Text="비활성화 가능한 장치 : 0 / 0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0" />
+                </Border>
+            </Grid>
+        </Grid>
 
         <Grid x:Name="gridLoading" Background="#B2000000" Visibility="Collapsed">
             <ProgressBar Height="50" Width="200" IsIndeterminate="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
