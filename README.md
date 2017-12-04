@@ -2,7 +2,7 @@
 Windows Wake Programmable Device Manager  
 절전 해제가 가능한 장치를 검색하고 관리하는 기능을 제공합니다.
 
-![Main](https://user-images.githubusercontent.com/1563800/33543976-5c33de8a-d91c-11e7-8b7b-bf151a405f70.png)
+![Main](https://user-images.githubusercontent.com/1563800/33544072-a1756ed2-d91c-11e7-8162-fc616f4fe531.png)
 
 ## 소개
 컴퓨터가 절전 상태에서 의도치 않게 해제되는 경우 대부분의 경우,  
