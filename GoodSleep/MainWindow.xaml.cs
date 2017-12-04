@@ -86,6 +86,11 @@ namespace GoodSleep
                 }
             }
         }
+
+        private async void ContextRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            await UpdateViewAsync();
+        }
         #endregion
     }
 }

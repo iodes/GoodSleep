@@ -33,6 +33,8 @@
                         <Separator />
                         <MenuItem x:Name="contextEnable" Header="절전 해제 활성화" Click="ContextEnable_Click" />
                         <MenuItem x:Name="contextDisable" Header="절전 해제 비활성화" Click="ContextDisable_Click" />
+                        <Separator />
+                        <MenuItem x:Name="contextRefresh" Header="목록 새로 고침" Click="ContextRefresh_Click" />
                     </ContextMenu>
                 </ListView.ContextMenu>
 
